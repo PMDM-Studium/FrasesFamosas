@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class AyudanteBaseDeDatos extends SQLiteOpenHelper
 {
-    private static final String NOMBRE_BASE_DE_DATOS = "frases famosas",
+    private static final String NOMBRE_BASE_DE_DATOS = "frases_famosas",
             NOMBRE_TABLA_FRASES = "frasesfamosas";
     private static final int VERSION_BASE_DE_DATOS = 1;
 
@@ -23,7 +23,7 @@ public class AyudanteBaseDeDatos extends SQLiteOpenHelper
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(String.format("DROP TAB.E IF EXISTS %s", NOMBRE_TABLA_FRASES));
+        db.execSQL(String.format("DROP TABLE IF EXISTS %s", NOMBRE_TABLA_FRASES));
         onCreate(db);
     }
 }

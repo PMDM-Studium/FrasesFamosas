@@ -13,21 +13,22 @@ import es.studium.frasesfamosasapp.modelos.FraseFamosa;
 public class FrasesController {
     private AyudanteBaseDeDatos ayudanteBaseDeDatos;
     private String NOMBRE_TABLA = "frasesfamosas";
+
     public FrasesController(Context contexto) {
         ayudanteBaseDeDatos = new AyudanteBaseDeDatos(contexto);
     }
-        public int eliminarFrase(FraseFamosa frase) {
-            SQLiteDatabase baseDeDatos = ayudanteBaseDeDatos.getWritableDatabase();
-            String[] argumentos = {String.valueOf(frase.getId())};
-            return baseDeDatos.delete(NOMBRE_TABLA, "id = ?", argumentos);
-        }
+    public int eliminarFrase(FraseFamosa frase) {
+        SQLiteDatabase baseDeDatos = ayudanteBaseDeDatos.getWritableDatabase();
+        String[] argumentos = {String.valueOf(frase.getId())};
+        return baseDeDatos.delete(NOMBRE_TABLA, "id = ?", argumentos);
+    }
     public long nuevaFrase(FraseFamosa frase) {
         // writable porque vamos a insertar
         SQLiteDatabase baseDeDatos = ayudanteBaseDeDatos.getWritableDatabase();
-        ContentValues valoresParalnsertar = new ContentValues();
-        valoresParalnsertar.put("nombre", frase.getTexto());
-        valoresParalnsertar.put("edad", frase.getAutor());
-        return baseDeDatos.insert(NOMBRE_TABLA, null, valoresParalnsertar);
+        ContentValues valoresParaInsertar = new ContentValues();
+        valoresParaInsertar.put("texto", frase.getTexto());
+        valoresParaInsertar.put("autor", frase.getAutor());
+        return baseDeDatos.insert(NOMBRE_TABLA, null, valoresParaInsertar);
     }
     public int guardarCambios(FraseFamosa fraseEditada) {
         SQLiteDatabase baseDeDatos = ayudanteBaseDeDatos.getWritableDatabase();
